@@ -21,7 +21,7 @@ auth.post("/signup", async function(req, res, next) {
     let user = await authRepository.createUser(req.body);
     res.cookie("token", user.token, {
       maxAge: 1000 * 60 * 60,
-      domain: "casi.io",
+      domain: "app.casi.io",
       path: "/"
     });
     res.redirect("/user/profile");
