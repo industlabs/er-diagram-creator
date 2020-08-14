@@ -21,7 +21,7 @@ auth.post("/signup", async function(req, res, next) {
     let user = await authRepository.createUser(req.body);
     res.cookie("token", user.token, {
       maxAge: 1000 * 60 * 60,
-      domain: "127.0.0.1",
+      domain: "casi.io",
       path: "/"
     });
     res.redirect("/user/profile");
@@ -42,7 +42,7 @@ auth.get("/login/gitLab", async function(req, res, next) {
     const user = await authRepository.signInUser(userData.data.email);
     res.cookie("token", user.token, {
       maxAge: 1000 * 60 * 60,
-      domain: "127.0.0.1",
+      domain: "casi.io",
       path: "/"
     });
     res.redirect("/user/profile");
@@ -67,7 +67,7 @@ auth.get("/login/indeemaGitLab", async function(req, res, next) {
     const user = await authRepository.signInUser(userData.data.email);
     res.cookie("token", user.token, {
       maxAge: 1000 * 60 * 60,
-      domain: "127.0.0.1",
+      domain: "casi.io",
       path: "/"
     });
     res.redirect("/user/profile");
