@@ -57,7 +57,7 @@ auth.get("/login/indeemaGitLab", async function(req, res, next) {
   try {
     let { data } = await axios({
       method: "POST",
-      url: `https://git.indeema.com/oauth/token?client_id=${indeemaGitLabApplicationId}&client_secret=${indeemaGitLabAppliactionSecret}&code=${req.query.code}&grant_type=authorization_code&redirect_uri=http://127.0.0.1:8081/auth/login/indeemaGitLab`
+      url: `https://git.indeema.com/oauth/token?client_id=${indeemaGitLabApplicationId}&client_secret=${indeemaGitLabAppliactionSecret}&code=${req.query.code}&grant_type=authorization_code&redirect_uri=http://54.187.212.242:1882/auth/login/indeemaGitLab`
     }).catch(err => {
       console.log(err);
     });
