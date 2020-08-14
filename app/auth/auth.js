@@ -34,7 +34,7 @@ auth.post("/signup", async function(req, res, next) {
 auth.get("/login/gitLab", async function(req, res, next) {
   try {
     let { data } = await axios.post(
-      `https://gitlab.com/oauth/token?client_id=${applicationId}&client_secret=${secret}&code=${req.query.code}&grant_type=authorization_code&redirect_uri=http://127.0.0.1:8081/auth/login/gitLab`
+      `https://gitlab.com/oauth/token?client_id=${applicationId}&client_secret=${secret}&code=${req.query.code}&grant_type=authorization_code&redirect_uri=http://app.casi.io/auth/login/gitLab`
     );
     let userData = await axios.get(
       `https://gitlab.com/api/v4/user?access_token=${data.access_token}`
@@ -42,7 +42,7 @@ auth.get("/login/gitLab", async function(req, res, next) {
     const user = await authRepository.signInUser(userData.data.email);
     res.cookie("token", user.token, {
       maxAge: 1000 * 60 * 60,
-      domain: "casi.io",
+      domain: "app.casi.io",
       path: "/"
     });
     res.redirect("/user/profile");
@@ -57,7 +57,7 @@ auth.get("/login/indeemaGitLab", async function(req, res, next) {
   try {
     let { data } = await axios({
       method: "POST",
-      url: `https://git.indeema.com/oauth/token?client_id=${indeemaGitLabApplicationId}&client_secret=${indeemaGitLabAppliactionSecret}&code=${req.query.code}&grant_type=authorization_code&redirect_uri=http://54.187.212.242:1882/auth/login/indeemaGitLab`
+      url: `https://git.indeema.com/oauth/token?client_id=${indeemaGitLabApplicationId}&client_secret=${indeemaGitLabAppliactionSecret}&code=${req.query.code}&grant_type=authorization_code&redirect_uri=http://app.casi.io/auth/login/indeemaGitLab`
     }).catch(err => {
       console.log(err);
     });
@@ -67,7 +67,7 @@ auth.get("/login/indeemaGitLab", async function(req, res, next) {
     const user = await authRepository.signInUser(userData.data.email);
     res.cookie("token", user.token, {
       maxAge: 1000 * 60 * 60,
-      domain: "casi.io",
+      domain: "app.casi.io",
       path: "/"
     });
     res.redirect("/user/profile");
